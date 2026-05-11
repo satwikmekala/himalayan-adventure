@@ -72,6 +72,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .h-stats{
   display:flex;align-items:center;margin-top:2.8rem;
   opacity:0;animation:up 1.2s cubic-bezier(.16,1,.3,1) 1.1s forwards;
+  position:relative;z-index:2;
 }
 .hs{padding:0 1.8rem;text-align:center}
 .hs+.hs{border-left:.5px solid var(--br)}
@@ -79,13 +80,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .hs-l{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--t3);margin-top:5px}
 
 /* MOUNTAINS */
-.mts{position:absolute;bottom:0;left:0;width:100%;height:48%;pointer-events:none}
+.mts-wrap{position:absolute;bottom:0;left:0;width:100%;height:48%;pointer-events:none}
+.mt-l{position:absolute;bottom:0;left:0;width:100%;height:100%;pointer-events:none;will-change:transform;}
 
 /* SCROLL CUE */
 .sc{
   position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:8px;
   opacity:0;animation:up .8s ease 2.2s forwards;
+  z-index:2;
 }
 .sc-line{
   width:1px;height:38px;
@@ -93,6 +96,61 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   animation:scpulse 2.2s ease-in-out infinite;
 }
 .sc-txt{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--t3)}
+
+/* COUNTDOWN */
+.countdown {
+  font-family: var(--sans);
+  font-size: clamp(15px, 2.8vw, 20px);
+  color: var(--gold);
+  margin-top: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  animation: up 1.2s cubic-bezier(.16,1,.3,1) .95s forwards;
+  z-index: 2;
+  position: relative;
+  background: rgba(200, 165, 94, 0.06);
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: .5px solid rgba(200, 165, 94, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cd-nums {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ROUTE MAP */
+.route-wrapper {
+  margin: 1rem 0 5rem;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.route-wrapper.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.route-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 12px rgba(200, 165, 94, 0.15));
+}
+#route-path {
+  transition: stroke-dashoffset 0.1s ease-out;
+}
+.route-points circle {
+  transition: r 0.3s ease, fill 0.3s ease;
+}
+.route-points circle:hover {
+  r: 10;
+  fill: var(--gold);
+}
 
 /* ─── MODE BAR ─── */
 .mbar{
@@ -172,14 +230,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .ddet{
   font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;
   max-height:0;overflow:hidden;opacity:0;
-  transition:max-height .5s ease,opacity .45s ease,margin-top .3s ease;
+  transition:max-height .8s ease,opacity .6s ease,margin-top .4s ease;
 }
-.ddet.open{max-height:300px;opacity:1;margin-top:14px}
+.ddet.open{max-height:2200px;opacity:1;margin-top:14px}
 
 /* ─── TREK SECTION ─── */
-.tw{position:relative;z-index:1;padding:0 1.5rem 6rem}
 .tb{
-  max-width:720px;margin:0 auto;
+  width:100%;
   background:linear-gradient(145deg,rgba(4,24,19,.95),rgba(6,32,26,.75));
   border:.5px solid rgba(62,201,191,.2);border-radius:26px;
   padding:3rem 2.5rem;backdrop-filter:blur(18px);
@@ -266,6 +323,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <h1 class="h-title">Nine<br><em>Days.</em></h1>
   <p class="h-tagline">Seven souls. One valley.<br>A mountain that doesn't care who you were before.</p>
   
+  <div id="countdown" class="countdown"></div>
+
   <div class="h-stats">
     <div class="hs">
       <div class="hs-n">9</div>
@@ -286,12 +345,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   </div>
   
   <!-- Mountain silhouettes: 4 layers, far to near -->
-  <svg class="mts" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,195 C40,175 80,150 140,140 C200,130 240,110 300,95 C360,80 400,100 460,112 C520,124 560,88 620,78 C680,68 730,98 800,85 C870,72 920,50 990,62 C1060,74 1110,105 1170,95 C1230,85 1280,110 1340,100 C1390,92 1420,115 1440,122 L1440,280 L0,280Z" fill="#1c0e3a" opacity=".7"/>
-    <path d="M0,222 C50,200 100,178 165,188 C230,198 270,165 335,150 C400,135 445,160 510,148 C575,136 620,108 685,118 C750,128 795,102 865,112 C935,122 985,96 1055,106 C1125,116 1175,140 1235,130 C1285,122 1335,145 1390,138 C1418,134 1432,148 1440,155 L1440,280 L0,280Z" fill="#110820" opacity=".9"/>
-    <path d="M0,248 C45,232 90,215 145,225 C200,235 245,210 305,200 C365,190 415,215 475,205 C535,195 580,178 645,188 C710,198 755,178 825,185 C895,192 945,170 1015,180 C1085,190 1140,210 1200,200 C1248,192 1300,210 1360,205 C1398,202 1425,214 1440,220 L1440,280 L0,280Z" fill="#09051a" opacity="1"/>
-    <path d="M0,265 C30,257 65,248 105,254 C145,260 185,244 235,238 C285,232 325,248 375,242 C425,236 465,225 520,232 C575,239 615,228 675,232 C735,236 775,222 840,228 C905,234 950,218 1010,224 C1070,230 1120,240 1175,235 C1218,231 1265,240 1318,237 C1368,234 1410,242 1440,246 L1440,280 L0,280Z" fill="#050312" opacity="1"/>
-  </svg>
+  <div class="mts-wrap">
+    <svg class="mt-l mt-0" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,195 C40,175 80,150 140,140 C200,130 240,110 300,95 C360,80 400,100 460,112 C520,124 560,88 620,78 C680,68 730,98 800,85 C870,72 920,50 990,62 C1060,74 1110,105 1170,95 C1230,85 1280,110 1340,100 C1390,92 1420,115 1440,122 L1440,280 L0,280Z" fill="#1c0e3a" opacity=".7"/></svg>
+    <svg class="mt-l mt-1" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,222 C50,200 100,178 165,188 C230,198 270,165 335,150 C400,135 445,160 510,148 C575,136 620,108 685,118 C750,128 795,102 865,112 C935,122 985,96 1055,106 C1125,116 1175,140 1235,130 C1285,122 1335,145 1390,138 C1418,134 1432,148 1440,155 L1440,280 L0,280Z" fill="#110820" opacity=".9"/></svg>
+    <svg class="mt-l mt-2" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,248 C45,232 90,215 145,225 C200,235 245,210 305,200 C365,190 415,215 475,205 C535,195 580,178 645,188 C710,198 755,178 825,185 C895,192 945,170 1015,180 C1085,190 1140,210 1200,200 C1248,192 1300,210 1360,205 C1398,202 1425,214 1440,220 L1440,280 L0,280Z" fill="#09051a" opacity="1"/></svg>
+    <svg class="mt-l mt-3" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,265 C30,257 65,248 105,254 C145,260 185,244 235,238 C285,232 325,248 375,242 C425,236 465,225 520,232 C575,239 615,228 675,232 C735,236 775,222 840,228 C905,234 950,218 1010,224 C1070,230 1120,240 1175,235 C1218,231 1265,240 1318,237 C1368,234 1410,242 1440,246 L1440,280 L0,280Z" fill="#050312" opacity="1"/></svg>
+  </div>
   
   <div class="sc">
     <div class="sc-line"></div>
@@ -316,12 +375,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     <p class="sh-eye">The Journey</p>
     <h2 class="sh-t">Seven chapters.<br>One story.</h2>
   </div>
+
+  <div class="route-wrapper">
+    <svg class="route-svg" viewBox="0 0 950 280" preserveAspectRatio="xMidYMid meet">
+      <!-- Base track -->
+      <path d="M 100,200 C 150,200 200,100 250,100 C 350,100 350,220 450,220 C 550,220 550,140 650,140 C 750,140 750,50 850,50" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <!-- Animated path -->
+      <path id="route-path" d="M 100,200 C 150,200 200,100 250,100 C 350,100 350,220 450,220 C 550,220 550,140 650,140 C 750,140 750,50 850,50" fill="none" stroke="url(#route-grad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <defs>
+        <linearGradient id="route-grad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="var(--gold)" />
+          <stop offset="100%" stop-color="var(--teal)" />
+        </linearGradient>
+      </defs>
+
+      <g class="route-points">
+        <circle cx="100" cy="200" r="6" fill="var(--bg)" stroke="var(--gold)" stroke-width="3"/>
+        <text x="100" y="225" fill="var(--t2)" font-size="14" font-family="var(--sans)" text-anchor="middle" letter-spacing="1px">KASOL</text>
+        
+        <circle cx="250" cy="100" r="6" fill="var(--bg)" stroke="var(--gold)" stroke-width="3"/>
+        <text x="250" y="80" fill="var(--t2)" font-size="14" font-family="var(--sans)" text-anchor="middle" letter-spacing="1px">TOSH</text>
+        
+        <circle cx="450" cy="220" r="6" fill="var(--bg)" stroke="#a1936b" stroke-width="3"/>
+        <text x="450" y="245" fill="var(--t2)" font-size="14" font-family="var(--sans)" text-anchor="middle" letter-spacing="1px">KULLU</text>
+        
+        <circle cx="650" cy="140" r="6" fill="var(--bg)" stroke="#74b39e" stroke-width="3"/>
+        <text x="650" y="165" fill="var(--t2)" font-size="14" font-family="var(--sans)" text-anchor="middle" letter-spacing="1px">MANALI</text>
+        
+        <circle cx="850" cy="50" r="8" fill="var(--bg)" stroke="var(--teal)" stroke-width="3"/>
+        <text x="850" y="30" fill="var(--teal)" font-size="16" font-family="var(--sans)" text-anchor="middle" letter-spacing="1px" font-weight="500">BRIGHU LAKE</text>
+      </g>
+    </svg>
+  </div>
+
   <div class="days" id="days"></div>
 </div>
 
-<!-- ═══ TREK ═══ -->
-<div class="tw">
-  <div class="tb">
+<!-- ═══ TREK TEMPLATE ═══ -->
+<template id="trek-template">
+  <div class="tb" style="margin-top:20px;">
     <div class="th">
       <p class="t-eye">The Centrepiece</p>
       <h2 class="t-title">Brighu Lake</h2>
@@ -395,7 +489,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       </div>
     </div>
   </div>
-</div>
+</template>
 
 <!-- ═══ CLOSING ═══ -->
 <div class="clos z">
@@ -498,6 +592,12 @@ const DAYS=[
    teaser:'White water, then the road north. A full moving day.',
    vibes:['adventure','travel'],spoiler:true,
    detail:'Descend from Tosh into the Tempo Traveller. Stop at Kullu for river rafting on the Beas — 14km, Grade II–III rapids. Then push north to Manali. Check into Vashisht. Hot springs tonight to prep the legs for what\'s coming.'},
+  {n:'5–7',date:'Jun 17–19',dow:'Wed–Fri',
+   title:'The Centrepiece',loc:'Brighu Lake',
+   teaser:'Three days above the world. A 4,300m summit.',
+   vibes:['adventure','nature','mindful'],spoiler:true,
+   isTrek:true,
+   detail:''},
   {n:8,date:'Jun 20',dow:'Saturday',
    title:'The Last Night',loc:'Old Manali',
    teaser:'The mountain gave you something. Tonight you sit with it.',
@@ -533,7 +633,7 @@ function render(){
     card.className='dc';
     card.innerHTML=`
       <div class="dm">
-        <span class="dm-d">Day ${d.n}</span>
+        <span class="dm-d">${typeof d.n === 'string' ? 'Days ' + d.n : 'Day ' + d.n}</span>
         <span class="dm-dt">${d.date} · ${d.dow}</span>
       </div>
       <h3 class="dt">${d.title}</h3>
@@ -541,7 +641,7 @@ function render(){
       <p class="dtease">"${d.teaser}"</p>
       <div class="vtags">${tags}</div>
       ${showBtn?`<button class="rbtn" onclick="rev(${i},this)">Reveal the plan →</button>`:''}
-      <div class="ddet${show?' open':''}" id="dd${i}">${d.detail}</div>
+      <div class="ddet${show?' open':''}" id="dd${i}">${d.isTrek ? document.getElementById('trek-template').innerHTML : d.detail}</div>
     `;
     el.appendChild(card);
     requestAnimationFrame(()=>setTimeout(()=>card.classList.add('in'),i*80));
@@ -565,6 +665,76 @@ const obs=new IntersectionObserver(entries=>{
     if(e.isIntersecting)e.target.classList.add('in');
   });
 },{threshold:.08});
+
+const rw = document.querySelector('.route-wrapper');
+if(rw) obs.observe(rw);
+
+// ── COUNTDOWN ──────────────────────────────────────
+function updateCountdown() {
+  const targetDate = new Date('June 12, 2026 14:40:00').getTime();
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const cdEl = document.getElementById('countdown');
+  if (!cdEl) return;
+
+  if (distance < 0) {
+    cdEl.innerHTML = "We have taken off!";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  cdEl.innerHTML = `<span class="cd-nums">${days}</span> days, <span class="cd-nums">${hours}</span> hours, <span class="cd-nums">${minutes}</span> minutes, <span class="cd-nums">${seconds}</span> seconds`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ── PARALLAX & ROUTE MAP ──────────────────────────
+const m0 = document.querySelector('.mt-0');
+const m1 = document.querySelector('.mt-1');
+const m2 = document.querySelector('.mt-2');
+const m3 = document.querySelector('.mt-3');
+const routePath = document.getElementById('route-path');
+
+if (routePath) {
+  routePath.pathLen = routePath.getTotalLength();
+  routePath.style.strokeDasharray = routePath.pathLen;
+  routePath.style.strokeDashoffset = routePath.pathLen;
+}
+
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const y = window.scrollY;
+      // Parallax
+      if(y < window.innerHeight * 1.5) {
+        if(m0) m0.style.transform = `translate3d(0, ${y * 0.45}px, 0)`;
+        if(m1) m1.style.transform = `translate3d(0, ${y * 0.3}px, 0)`;
+        if(m2) m2.style.transform = `translate3d(0, ${y * 0.15}px, 0)`;
+        if(m3) m3.style.transform = `translate3d(0, ${y * 0.05}px, 0)`;
+      }
+      
+      // Route Map Drawing
+      if (routePath) {
+        const rect = routePath.getBoundingClientRect();
+        const start = window.innerHeight * 0.85;
+        const end = window.innerHeight * 0.25;
+        let progress = (start - rect.top) / (start - end);
+        if (progress < 0) progress = 0;
+        if (progress > 1) progress = 1;
+        routePath.style.strokeDashoffset = routePath.pathLen - (progress * routePath.pathLen);
+      }
+      
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
 
 // ── INIT ─────────────────────────────────────────
 render();
