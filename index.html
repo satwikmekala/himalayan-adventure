@@ -310,6 +310,135 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   .tkpis{grid-template-columns:repeat(2,1fr)}
   .tgrid{grid-template-columns:1fr}
 }
+
+/* ─── BEFORE YOU ARRIVE ─── */
+.top-prep-btn {
+  position: absolute; top: 1.5rem; right: 1.5rem; z-index: 10;
+  font-family: var(--sans); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--gold); background: rgba(200, 165, 94, 0.08); border: .5px solid rgba(200, 165, 94, 0.25);
+  padding: 10px 22px; border-radius: 30px; cursor: pointer; text-decoration: none;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.3s ease;
+  opacity: 0; animation: up 1.2s cubic-bezier(.16,1,.3,1) .3s forwards;
+}
+.top-prep-btn:hover { background: rgba(200, 165, 94, 0.18); border-color: var(--gold); }
+.top-prep-btn.active { background: rgba(200, 165, 94, 0.25); border-color: var(--gold); }
+
+.bya-sec { padding-top: 4rem; padding-bottom: 6rem; max-width: 800px; margin: 0 auto; position: relative; z-index: 1; padding-inline: 1.5rem; display: none; }
+.bya-sec.open { display: block; animation: up 0.8s cubic-bezier(.16,1,.3,1) forwards; }
+.bya-sh { text-align: center; margin-bottom: 3.5rem; }
+.bya-pill {
+  display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold);
+  background: rgba(200, 165, 94, 0.1); border: .5px solid rgba(200, 165, 94, 0.3);
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 1.5rem;
+}
+.bya-sub {
+  font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(16px, 2.8vw, 20px);
+  color: var(--t2); margin-top: 0.8rem; line-height: 1.45; max-width: 500px; margin-inline: auto;
+}
+
+.bya-block {
+  margin-top: 4rem; padding: 2.5rem; background: var(--card); border: .5px solid var(--br);
+  border-radius: 20px; position: relative; overflow: hidden;
+}
+.bya-block::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
+.bya-block.physical::before { background: #f07840; }
+.bya-block.physical .bya-b-head { border-bottom: .5px solid rgba(240, 120, 64, 0.15); }
+.bya-block.mental::before { background: #aa74e8; }
+.bya-block.mental .bya-b-head { border-bottom: .5px solid rgba(170, 116, 232, 0.15); }
+
+.bya-b-head { padding-bottom: 1.8rem; margin-bottom: 2rem; }
+.bya-b-head p { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--text); line-height: 1.65; }
+
+.bya-grid { display: grid; gap: 14px; }
+.bya-2x2 { grid-template-columns: 1fr 1fr; }
+.bya-3x1 { grid-template-columns: 1fr 1fr 1fr; }
+
+.bya-card {
+  background: rgba(255, 255, 255, 0.02); border: .5px solid var(--br); border-radius: 14px;
+  padding: 1.6rem; transition: all 0.3s ease;
+}
+.bya-block.physical .bya-card:hover { transform: translateY(-3px); border-color: rgba(240, 120, 64, 0.4); box-shadow: 0 8px 24px rgba(240, 120, 64, 0.06); }
+.bya-block.mental .bya-card:hover { transform: translateY(-3px); border-color: rgba(170, 116, 232, 0.4); box-shadow: 0 8px 24px rgba(170, 116, 232, 0.06); }
+
+.bya-c-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.bya-icon { font-size: 20px; line-height: 1; }
+.bya-badge {
+  font-family: var(--sans); font-size: 9px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,0.05);
+}
+.bya-block.physical .bya-badge { color: #f07840; background: rgba(240, 120, 64, 0.1); }
+
+.bya-c-t { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 24px; margin-bottom: 6px; color: var(--text); }
+.bya-c-target { font-family: var(--sans); font-size: 13px; font-weight: 400; margin-bottom: 12px; }
+.bya-block.physical .bya-c-target { color: #f07840; }
+.bya-block.mental .bya-c-target { color: #aa74e8; }
+.bya-c-det { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--t2); line-height: 1.6; }
+.bya-c-sug { margin-top: 15px; font-family: var(--sans); font-size: 11px; color: var(--t3); border-top: .5px solid var(--br); padding-top: 12px; }
+
+.bya-banner {
+  margin-top: 24px; text-align: center; font-family: var(--sans); font-size: 13px; font-weight: 400;
+  color: #f07840; background: rgba(240, 120, 64, 0.04); padding: 14px; border-radius: 12px; border: .5px dashed rgba(240, 120, 64, 0.25);
+}
+
+.bya-ref {
+  margin-top: 24px; text-align: center; font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 19px; color: var(--t2); line-height: 1.5; padding: 2.5rem; background: rgba(255,255,255,0.01);
+  border-radius: 14px; border: .5px solid var(--br);
+}
+
+.bya-tabs { display: flex; gap: 8px; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+.bya-tabs::-webkit-scrollbar { display: none; }
+.bya-tbtn {
+  font-family: var(--sans); font-size: 13px; font-weight: 400; background: transparent; border: .5px solid var(--br);
+  color: var(--t2); padding: 10px 20px; border-radius: 24px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap;
+}
+.bya-tbtn:hover { border-color: var(--text); color: var(--text); }
+.bya-tbtn.active { font-weight: 500; }
+.bya-tbtn:nth-child(1).active { background: rgba(232, 85, 85, 0.1); border-color: #e85555; color: #e85555; }
+.bya-tbtn:nth-child(2).active { background: rgba(62, 201, 191, 0.1); border-color: #3ec9bf; color: #3ec9bf; }
+.bya-tbtn:nth-child(3).active { background: rgba(200, 165, 94, 0.1); border-color: #c8a55e; color: #c8a55e; }
+.bya-tbtn:nth-child(4).active { background: rgba(255, 255, 255, 0.05); border-color: rgba(255,255,255,0.3); color: #fff; }
+
+.bya-tab-content { display: none; animation: up 0.4s ease forwards; }
+.bya-tab-content.active { display: block; }
+.bya-t-intro { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--text); line-height: 1.6; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: .5px solid var(--br); }
+
+.bya-list { display: flex; flex-direction: column; gap: 8px; }
+.bya-li {
+  display: flex; gap: 14px; padding: 14px 18px; background: rgba(255,255,255,0.015); border: .5px solid var(--br);
+  border-radius: 12px; cursor: pointer; transition: all 0.2s ease; align-items: flex-start;
+}
+.bya-li:hover { background: rgba(255,255,255,0.035); }
+.bya-li-icon {
+  width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--t3); flex-shrink: 0;
+  margin-top: 2px; position: relative; transition: all 0.2s ease;
+}
+.bya-li.checked .bya-li-icon { background: var(--t2); border-color: var(--t2); }
+.bya-li.checked .bya-li-icon::after {
+  content: ''; position: absolute; top: 3.5px; left: 3.5px; width: 7px; height: 4px;
+  border-bottom: 1.5px solid var(--bg); border-left: 1.5px solid var(--bg); transform: rotate(-45deg);
+}
+.bya-li.buy.checked .bya-li-icon { background: #e85555; border-color: #e85555; }
+.bya-li.rent.checked .bya-li-icon { background: #3ec9bf; border-color: #3ec9bf; }
+.bya-li.pack.checked .bya-li-icon { background: #c8a55e; border-color: #c8a55e; }
+.bya-li.leave.checked .bya-li-icon { background: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.4); }
+
+.bya-li.checked .bya-li-text { opacity: 0.4; text-decoration: line-through; }
+.bya-li-text { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--t2); line-height: 1.55; transition: all 0.2s ease; }
+.bya-li-text strong { color: var(--text); font-weight: 400; display: block; margin-bottom: 3px; }
+.bya-urgency {
+  display: inline-block; margin-top: 8px; font-family: var(--sans); font-size: 9px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 8px; border-radius: 8px;
+}
+.bya-li.buy .bya-urgency { color: #e85555; background: rgba(232, 85, 85, 0.1); }
+.bya-subcat { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--gold); margin-bottom: 12px; }
+
+@media(max-width: 768px){
+  .bya-2x2, .bya-3x1 { grid-template-columns: 1fr; }
+  .bya-block { padding: 1.8rem 1.5rem; }
+  .top-prep-btn { top: 1.2rem; right: 1.2rem; font-size: 10px; padding: 8px 16px; }
+}
 </style>
 </head>
 <body>
@@ -319,6 +448,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <!-- ═══ HERO ═══ -->
 <div class="hero z">
+  <button class="top-prep-btn" onclick="togglePrep()">Before You Arrive</button>
   <p class="h-eye">Himachal Pradesh · June 2026</p>
   <h1 class="h-title">Nine<br><em>Days.</em></h1>
   <p class="h-tagline">Seven souls. One valley.<br>A mountain that doesn't care who you were before.</p>
@@ -355,6 +485,185 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="sc">
     <div class="sc-line"></div>
     <div class="sc-txt">Scroll</div>
+  </div>
+</div>
+
+<!-- ═══ BEFORE YOU ARRIVE ═══ -->
+<div id="prep" class="sec z bya-sec">
+  <div class="sh bya-sh">
+    <div class="bya-pill" id="bya-countdown">36 days to go</div>
+    <h2 class="sh-t">Before You Arrive</h2>
+    <p class="bya-sub">"The mountains don't grade on effort. Show up ready or show up humbled."</p>
+  </div>
+
+  <!-- BLOCK 1: PHYSICAL -->
+  <div class="bya-block physical">
+    <div class="bya-b-head">
+      <p>This trip is the reward. For the next 36 days, earn it.<br>Push harder at work so you leave with zero guilt.<br>Push harder in the gym so your legs don't quit on Day 1 of the trek.<br>Show up to these mountains having actually prepared.</p>
+    </div>
+    <div class="bya-grid bya-2x2">
+      <div class="bya-card">
+        <div class="bya-c-top">
+          <span class="bya-icon">🏃‍♂️</span>
+          <span class="bya-badge">Start this week</span>
+        </div>
+        <h4 class="bya-c-t">Run</h4>
+        <div class="bya-c-target">3km → 8km over the month</div>
+        <p class="bya-c-det">Altitude will cut your lung capacity by 30%. Start building now. Run 4x a week. Increase 1km every 5 days.</p>
+      </div>
+      <div class="bya-card">
+        <div class="bya-c-top">
+          <span class="bya-icon">🏋️</span>
+          <span class="bya-badge">Critical for trek</span>
+        </div>
+        <h4 class="bya-c-t">Gym: Legs</h4>
+        <div class="bya-c-target">3 sessions per week, legs priority</div>
+        <p class="bya-c-det">Squats, lunges, step-ups, calf raises, Bulgarian split squats. Your quads take 80% of the load on descent. They need to be ready.</p>
+      </div>
+      <div class="bya-card">
+        <div class="bya-c-top">
+          <span class="bya-icon">🏀</span>
+          <span class="bya-badge">Do this with the group</span>
+        </div>
+        <h4 class="bya-c-t">Sports</h4>
+        <div class="bya-c-target">At least 2x per week</div>
+        <p class="bya-c-det">Badminton, football, basketball — anything with lateral movement and varied cardio. Gets you fit AND keeps it fun. Organise games.</p>
+      </div>
+      <div class="bya-card">
+        <div class="bya-c-top">
+          <span class="bya-icon">🪜</span>
+          <span class="bya-badge">Best trek prep</span>
+        </div>
+        <h4 class="bya-c-t">Stairs</h4>
+        <div class="bya-c-target">30 mins, 3x per week</div>
+        <p class="bya-c-det">Best simulation for the trek. Find a building and use it. Add a weighted backpack in week 3. Your knees will thank you.</p>
+      </div>
+    </div>
+    <div class="bya-banner">By June 12, you should be able to walk 6–7 hours with a 15kg pack.</div>
+  </div>
+
+  <!-- BLOCK 2: MENTAL -->
+  <div class="bya-block mental">
+    <div class="bya-b-head">
+      <p>The trek will strip everything back. There's nowhere to perform at 4,300m.<br>Come in with space — not a head full of unfinished business and digital noise.<br>The work you do mentally in the next 36 days will shape what the mountains give you.</p>
+    </div>
+    <div class="bya-grid bya-3x1">
+      <div class="bya-card">
+        <h4 class="bya-c-t">Meditate</h4>
+        <div class="bya-c-target">10 minutes a day is enough to change everything.</div>
+        <p class="bya-c-det">Use Headspace, Waking Up, or just sit in silence for 10 minutes. No goal. No outcome. Just practice being still. By the time you're at Brighu Lake, you'll understand why this mattered.</p>
+        <div class="bya-c-sug">Apps: Headspace · Waking Up · Insight Timer</div>
+      </div>
+      <div class="bya-card">
+        <h4 class="bya-c-t">Journal</h4>
+        <div class="bya-c-target">Write before you go. The mountains will respond.</div>
+        <p class="bya-c-det">Morning pages or evening reflection — doesn't matter. One question to start: What do I want from 9 days in the mountains with my closest people? Write without editing yourself.</p>
+        <div class="bya-c-sug">Even 5 minutes. Even voice memos. Just reflect.</div>
+      </div>
+      <div class="bya-card">
+        <h4 class="bya-c-t">Close Your Loops</h4>
+        <div class="bya-c-target">Finish what needs finishing. Come in clean.</div>
+        <p class="bya-c-det">Work, conversations, decisions you've been putting off. The guilt of unfinished things follows you into the mountains. June 12 is the cutoff. Everything before that line gets resolved.</p>
+        <div class="bya-c-sug">Start your wind-down 5 days before. Don't leave mid-chaos.</div>
+      </div>
+    </div>
+    <div class="bya-ref">
+      "What version of yourself do you want to leave in the mountains?<br>What are you carrying right now that this trip could help you put down?"
+    </div>
+  </div>
+
+  <!-- BLOCK 3: WHAT TO BRING -->
+  <div class="bya-block gear">
+    <div class="bya-tabs">
+      <button class="bya-tbtn active" onclick="switchTab(0)">Buy Now</button>
+      <button class="bya-tbtn" onclick="switchTab(1)">Rent</button>
+      <button class="bya-tbtn" onclick="switchTab(2)">Pack</button>
+      <button class="bya-tbtn" onclick="switchTab(3)">Leave</button>
+    </div>
+    <div class="bya-tab-content active" id="bya-tab-0">
+      <p class="bya-t-intro">These take time. Trekking boots need 1 month minimum to break in. Buy them this week or pay for it with blisters on Day 5.</p>
+      <div class="bya-list">
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🥾 Trekking boots</strong><br>Break in immediately. Wear them everywhere. New boots on a 3-day trek = destroyed feet.<br><span class="bya-urgency">Buy this week</span></div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🧥 Puffer / down jacket</strong><br>Brighu Lake camps hit -2 to 5°C at night. This is not optional.<br><span class="bya-urgency">Buy or borrow now</span></div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>👕 Moisture-wicking trekking shirts × 3</strong><br>Cotton kills on a trek — holds sweat, adds weight, causes chafing.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🩲 Thermal base layers (top + bottom)</strong><br>Non-negotiable for the summit night. Lightweight thermals.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🧦 Wool hiking socks × 5 pairs</strong><br>No cotton. Ever. Merino wool only. Your feet will thank you.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🕶️ UV sunglasses</strong><br>Altitude sun at 4,300m is brutal. UV damage at high altitude is real.<br><span class="bya-urgency">Important</span></div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>☀️ Sunscreen SPF 50+ (2 bottles)</strong><br>Burns happen fast. Pack more than you think you need.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🔦 Headlamp + spare batteries</strong><br>Non-negotiable. Early morning starts and camp nights.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>💧 1L+ water bottle (Nalgene or similar)</strong><br>Hydration at altitude is the single biggest factor in how you feel.</div></div>
+        <div class="bya-li buy" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🔋 Power bank 20,000mAh minimum</strong><br>No charging on the 3-day trek. Camera, phone, headlamp — all on you.</div></div>
+      </div>
+    </div>
+    
+    <div class="bya-tab-content" id="bya-tab-1">
+      <p class="bya-t-intro">Don't haul this from Hyderabad. Manali has everything and rental shops are solid.<br><span style="opacity:0.6;font-size:0.9em;">Book or confirm with your trek guide in advance.</span></p>
+      <div class="bya-list">
+        <div class="bya-li rent" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🛌 Sleeping bag (-5°C rated)</strong><br>~₹150–200/day. Absolute necessity for summit camp.</div></div>
+        <div class="bya-li rent" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🥢 Trekking poles</strong><br>~₹50–100/day. Knees on descent will beg you for these.</div></div>
+        <div class="bya-li rent" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🧊 Crampons / microspikes</strong><br>~₹100/day. Brighu Lake in June has snow. You'll need grip.</div></div>
+        <div class="bya-li rent" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🧥 Rain jacket / poncho</strong><br>If you don't own a good one, rent. Monsoon edges are active in June.</div></div>
+        <div class="bya-li rent" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text"><strong>🎒 High-altitude backpack top-up</strong><br>If your pack isn't 40–50L, rent an extension or a full pack.</div></div>
+      </div>
+    </div>
+
+    <div class="bya-tab-content" id="bya-tab-2">
+      <div class="bya-subcat">Medications</div>
+      <div class="bya-list">
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Diamox (altitude sickness prevention — see a doctor before the trek)</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Ibuprofen + Paracetamol</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">ORS / electrolyte sachets × 10 minimum</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Blister plasters + moleskin</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Antiseptic cream + bandages</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Lip balm SPF 30+</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Your personal prescriptions (5-day extra supply)</div></div>
+      </div>
+      <div class="bya-subcat" style="margin-top:20px;">Hygiene (3 days no shower on trek)</div>
+      <div class="bya-list">
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Wet wipes × 2 large packs (your shower substitute)</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Biodegradable soap</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Hand sanitizer</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Toilet paper + waste bags (pack in, pack out)</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Quick-dry travel towel</div></div>
+      </div>
+      <div class="bya-subcat" style="margin-top:20px;">Food & Energy</div>
+      <div class="bya-list">
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Mixed nuts × enough for 3 days</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Protein/energy bars × 3–4 per day per person</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Dark chocolate (altitude comfort food)</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Electrolyte powder sachets</div></div>
+      </div>
+      <div class="bya-subcat" style="margin-top:20px;">Misc</div>
+      <div class="bya-list">
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Earplugs (hostel nights are loud)</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Reusable bags × 2</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">GoPro / camera + memory cards</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">A small notebook and pen</div></div>
+        <div class="bya-li pack" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">A physical photo or object that matters to you (optional)</div></div>
+      </div>
+    </div>
+
+    <div class="bya-tab-content" id="bya-tab-3">
+      <div class="bya-subcat">Mindset</div>
+      <p class="bya-t-intro">"Some things are heavier than your pack."</p>
+      <div class="bya-list">
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">The need to be constantly available</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Social media pressure to document every moment</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Expectations of how the trip "should" go</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Work stress — close your loops before June 12</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">The version of yourself that performs for others</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">The habit of reaching for your phone when things get quiet</div></div>
+      </div>
+      <div class="bya-subcat" style="margin-top:20px;">Physical (don't overpack)</div>
+      <div class="bya-list">
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Your laptop (unless truly required)</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Heavy books (Kindle instead, or nothing)</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Jewelry or valuables you'd miss if lost</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">More than 1–2 pairs of jeans</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">"Just in case" items that will never be used</div></div>
+        <div class="bya-li leave" onclick="this.classList.toggle('checked')"><div class="bya-li-icon"></div><div class="bya-li-text">Anything you haven't tested and trusted before</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -626,7 +935,8 @@ function render(){
   el.innerHTML='';
   DAYS.forEach((d,i)=>{
     const show=!d.spoiler||mode==='f'||revealed.has(i);
-    const showBtn=d.spoiler&&mode==='s'&&!revealed.has(i);
+    const showBtn=d.spoiler&&mode==='s';
+    const btnText=revealed.has(i) ? 'Hide the plan ←' : 'Reveal the plan →';
     const tags=d.vibes.map(v=>`<span class="vt" style="color:${V[v].c};background:${V[v].b};border:.5px solid ${V[v].c}38;">${V[v].l}</span>`).join('');
     const pin=`<svg width="9" height="11" viewBox="0 0 9 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 0C2.01 0 0 1.95 0 4.36 0 7.64 4.5 11 4.5 11S9 7.64 9 4.36C9 1.95 6.99 0 4.5 0zm0 5.9a1.54 1.54 0 1 1 0-3.08 1.54 1.54 0 0 1 0 3.08z" fill="currentColor" opacity=".35"/></svg>`;
     const card=document.createElement('div');
@@ -640,7 +950,7 @@ function render(){
       <div class="dloc">${pin} ${d.loc}</div>
       <p class="dtease">"${d.teaser}"</p>
       <div class="vtags">${tags}</div>
-      ${showBtn?`<button class="rbtn" onclick="rev(${i},this)">Reveal the plan →</button>`:''}
+      ${showBtn?`<button class="rbtn" onclick="rev(${i},this)">${btnText}</button>`:''}
       <div class="ddet${show?' open':''}" id="dd${i}">${d.isTrek ? document.getElementById('trek-template').innerHTML : d.detail}</div>
     `;
     el.appendChild(card);
@@ -653,10 +963,17 @@ function render(){
 }
 
 function rev(i,btn){
-  revealed.add(i);
   const dd=document.getElementById('dd'+i);
-  if(dd)dd.classList.add('open');
-  if(btn)btn.style.display='none';
+  if(!dd) return;
+  if(dd.classList.contains('open')){
+    dd.classList.remove('open');
+    revealed.delete(i);
+    if(btn) btn.innerHTML='Reveal the plan →';
+  } else {
+    dd.classList.add('open');
+    revealed.add(i);
+    if(btn) btn.innerHTML='Hide the plan ←';
+  }
 }
 
 // ── SCROLL OBSERVE ────────────────────────────────
@@ -676,10 +993,11 @@ function updateCountdown() {
   const distance = targetDate - now;
 
   const cdEl = document.getElementById('countdown');
-  if (!cdEl) return;
+  const byaPill = document.getElementById('bya-countdown');
 
   if (distance < 0) {
-    cdEl.innerHTML = "We have taken off!";
+    if (cdEl) cdEl.innerHTML = "We have taken off!";
+    if (byaPill) byaPill.innerHTML = "It has begun";
     return;
   }
 
@@ -688,10 +1006,37 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  cdEl.innerHTML = `<span class="cd-nums">${days}</span> days, <span class="cd-nums">${hours}</span> hours, <span class="cd-nums">${minutes}</span> minutes, <span class="cd-nums">${seconds}</span> seconds`;
+  if (cdEl) cdEl.innerHTML = `<span class="cd-nums">${days}</span> days, <span class="cd-nums">${hours}</span> hours, <span class="cd-nums">${minutes}</span> minutes, <span class="cd-nums">${seconds}</span> seconds`;
+  if (byaPill) byaPill.innerHTML = `${days} days to go`;
 }
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// ── TABS ───────────────────────────────────────────
+function switchTab(idx) {
+  const tabs = document.querySelectorAll('.bya-tbtn');
+  const contents = document.querySelectorAll('.bya-tab-content');
+  tabs.forEach((t, i) => {
+    t.classList.toggle('active', i === idx);
+    contents[i].classList.toggle('active', i === idx);
+  });
+}
+
+// ── TOGGLE SECTION ─────────────────────────────────
+function togglePrep() {
+  const sec = document.getElementById('prep');
+  const btn = document.querySelector('.top-prep-btn');
+  if (sec.classList.contains('open')) {
+    sec.classList.remove('open');
+    btn.classList.remove('active');
+    btn.innerHTML = 'Before You Arrive';
+  } else {
+    sec.classList.add('open');
+    btn.classList.add('active');
+    btn.innerHTML = 'Close Guide';
+    setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
 
 // ── PARALLAX & ROUTE MAP ──────────────────────────
 const m0 = document.querySelector('.mt-0');
