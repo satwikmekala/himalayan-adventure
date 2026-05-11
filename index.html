@@ -341,14 +341,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   margin-top: 4rem; padding: 2.5rem; background: var(--card); border: .5px solid var(--br);
   border-radius: 20px; position: relative; overflow: hidden;
 }
-.bya-block::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
-.bya-block.physical::before { background: #f07840; }
-.bya-block.physical .bya-b-head { border-bottom: .5px solid rgba(240, 120, 64, 0.15); }
-.bya-block.mental::before { background: #aa74e8; }
-.bya-block.mental .bya-b-head { border-bottom: .5px solid rgba(170, 116, 232, 0.15); }
-
 .bya-b-head { padding-bottom: 1.8rem; margin-bottom: 2rem; }
-.bya-b-head p { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--text); line-height: 1.65; }
+.bya-b-head p { font-family: var(--sans); font-size: 14px; font-weight: 300; color: var(--text); line-height: 1.65; text-align: center; padding: 0 2rem; }
 
 .bya-grid { display: grid; gap: 14px; }
 .bya-2x2 { grid-template-columns: 1fr 1fr; }
@@ -356,21 +350,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 .bya-card {
   background: rgba(255, 255, 255, 0.02); border: .5px solid var(--br); border-radius: 14px;
-  padding: 1.6rem; transition: all 0.3s ease;
+  padding: 1.5rem; transition: all 0.3s ease; position: relative;
+  display: flex; flex-direction: column; gap: 16px;
 }
 .bya-block.physical .bya-card:hover { transform: translateY(-3px); border-color: rgba(240, 120, 64, 0.4); box-shadow: 0 8px 24px rgba(240, 120, 64, 0.06); }
 .bya-block.mental .bya-card:hover { transform: translateY(-3px); border-color: rgba(170, 116, 232, 0.4); box-shadow: 0 8px 24px rgba(170, 116, 232, 0.06); }
 
-.bya-c-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-.bya-icon { font-size: 20px; line-height: 1; }
+.bya-icon { font-size: 24px; line-height: 1; }
 .bya-badge {
   font-family: var(--sans); font-size: 9px; font-weight: 500; text-transform: uppercase;
   letter-spacing: 0.1em; padding: 4px 10px; border-radius: 12px; background: rgba(255,255,255,0.05);
+  position: absolute; top: 1rem; right: 1rem;
 }
 .bya-block.physical .bya-badge { color: #f07840; background: rgba(240, 120, 64, 0.1); }
 
-.bya-c-t { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 24px; margin-bottom: 6px; color: var(--text); }
-.bya-c-target { font-family: var(--sans); font-size: 13px; font-weight: 400; margin-bottom: 12px; }
+.bya-c-t { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 24px; color: var(--text); }
+.bya-c-target { font-family: var(--sans); font-size: 13px; font-weight: 400; }
 .bya-block.physical .bya-c-target { color: #f07840; }
 .bya-block.mental .bya-c-target { color: #aa74e8; }
 .bya-c-det { font-family: var(--sans); font-size: 13px; font-weight: 300; color: var(--t2); line-height: 1.6; }
@@ -499,76 +494,72 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <!-- BLOCK 1: PHYSICAL -->
   <div class="bya-block physical">
     <div class="bya-b-head">
-      <p>This trip is the reward. For the next 36 days, earn it.<br>Push harder at work so you leave with zero guilt.<br>Push harder in the gym so your legs don't quit on Day 1 of the trek.<br>Show up to these mountains having actually prepared.</p>
+      <p>You've got 36 days. Use them. Not just for the trip — for whatever you're building right now. Push hard at work, close things out, make real progress on your goals. That way when June 12 comes, this trip is genuinely a reward you've earned — not a holiday you're escaping to.</p>
     </div>
     <div class="bya-grid bya-2x2">
       <div class="bya-card">
-        <div class="bya-c-top">
-          <span class="bya-icon">🏃‍♂️</span>
-          <span class="bya-badge">Start this week</span>
-        </div>
+        <span class="bya-badge">This week</span>
+        <span class="bya-icon">🏃</span>
         <h4 class="bya-c-t">Run</h4>
-        <div class="bya-c-target">3km → 8km over the month</div>
-        <p class="bya-c-det">Altitude will cut your lung capacity by 30%. Start building now. Run 4x a week. Increase 1km every 5 days.</p>
+        <div class="bya-c-target">2x per week — track or outside, both count</div>
+        <p class="bya-c-det">Doesn't need to be intense. Two consistent runs a week builds your cardio base and starts conditioning your body for sustained movement. Pick a time that actually works for your schedule and stick to it.</p>
       </div>
       <div class="bya-card">
-        <div class="bya-c-top">
-          <span class="bya-icon">🏋️</span>
-          <span class="bya-badge">Critical for trek</span>
-        </div>
-        <h4 class="bya-c-t">Gym: Legs</h4>
-        <div class="bya-c-target">3 sessions per week, legs priority</div>
-        <p class="bya-c-det">Squats, lunges, step-ups, calf raises, Bulgarian split squats. Your quads take 80% of the load on descent. They need to be ready.</p>
+        <span class="bya-badge">Legs x2 / week</span>
+        <span class="bya-icon">🏋️</span>
+        <h4 class="bya-c-t">Gym</h4>
+        <div class="bya-c-target">Regular gym — legs twice a week specifically</div>
+        <p class="bya-c-det">Show up consistently, not perfectly. Full body across the week, but prioritise legs twice — your quads, hamstrings, and calves will take the most punishment on a 3-day mountain trek. Build them now.</p>
       </div>
       <div class="bya-card">
-        <div class="bya-c-top">
-          <span class="bya-icon">🏀</span>
-          <span class="bya-badge">Do this with the group</span>
-        </div>
+        <span class="bya-badge">Start now</span>
+        <span class="bya-icon">🥗</span>
+        <h4 class="bya-c-t">Eat Well</h4>
+        <div class="bya-c-target">Cut the junk. Eat home food mostly.</div>
+        <p class="bya-c-det">This one's simple: the closer to June 12 you get, the cleaner your food should be. Home-cooked meals, less processed stuff, less eating out for the sake of it. Nourish your body like you're actually preparing it for something.</p>
+      </div>
+      <div class="bya-card">
+        <span class="bya-badge">Group activity</span>
+        <span class="bya-icon">🏓</span>
         <h4 class="bya-c-t">Sports</h4>
-        <div class="bya-c-target">At least 2x per week</div>
-        <p class="bya-c-det">Badminton, football, basketball — anything with lateral movement and varied cardio. Gets you fit AND keeps it fun. Organise games.</p>
-      </div>
-      <div class="bya-card">
-        <div class="bya-c-top">
-          <span class="bya-icon">🪜</span>
-          <span class="bya-badge">Best trek prep</span>
-        </div>
-        <h4 class="bya-c-t">Stairs</h4>
-        <div class="bya-c-target">30 mins, 3x per week</div>
-        <p class="bya-c-det">Best simulation for the trek. Find a building and use it. Add a weighted backpack in week 3. Your knees will thank you.</p>
+        <div class="bya-c-target">Pickleball, paddle, frisbee — organise it</div>
+        <p class="bya-c-det">We're adding more of these in the coming month. More sessions, more fun, more cardio that doesn't feel like cardio. Pickleball and frisbee are going on the group calendar — show up.</p>
       </div>
     </div>
-    <div class="bya-banner">By June 12, you should be able to walk 6–7 hours with a 15kg pack.</div>
+    <div class="bya-banner">By June 12: you should feel lighter, stronger, and genuinely proud of the month you put in. That's the bar.</div>
   </div>
 
   <!-- BLOCK 2: MENTAL -->
   <div class="bya-block mental">
     <div class="bya-b-head">
-      <p>The trek will strip everything back. There's nowhere to perform at 4,300m.<br>Come in with space — not a head full of unfinished business and digital noise.<br>The work you do mentally in the next 36 days will shape what the mountains give you.</p>
+      <p>The mountains will give you exactly what you bring in. Come in scattered and overwhelmed and that's what the altitude amplifies. Come in clear — and something else happens entirely.</p>
     </div>
     <div class="bya-grid bya-3x1">
       <div class="bya-card">
+        <span class="bya-icon">🧘</span>
         <h4 class="bya-c-t">Meditate</h4>
-        <div class="bya-c-target">10 minutes a day is enough to change everything.</div>
-        <p class="bya-c-det">Use Headspace, Waking Up, or just sit in silence for 10 minutes. No goal. No outcome. Just practice being still. By the time you're at Brighu Lake, you'll understand why this mattered.</p>
-        <div class="bya-c-sug">Apps: Headspace · Waking Up · Insight Timer</div>
+        <div class="bya-c-target">10 minutes of nothing. Daily.</div>
+        <p class="bya-c-det">Not a practice, not a lifestyle — just 10 minutes where you're not doing anything. Use Medito (free, no fluff) or just sit without your phone. The stillness compounds. Start now so it's a habit by June.</p>
+        <div class="bya-c-sug">App: Medito — free, no subscription, straightforward</div>
       </div>
       <div class="bya-card">
-        <h4 class="bya-c-t">Journal</h4>
-        <div class="bya-c-target">Write before you go. The mountains will respond.</div>
-        <p class="bya-c-det">Morning pages or evening reflection — doesn't matter. One question to start: What do I want from 9 days in the mountains with my closest people? Write without editing yourself.</p>
-        <div class="bya-c-sug">Even 5 minutes. Even voice memos. Just reflect.</div>
+        <span class="bya-icon">✍️</span>
+        <h4 class="bya-c-t">Set Your Intentions</h4>
+        <div class="bya-c-target">Write what you want this trip to give you.</div>
+        <p class="bya-c-det">Specifically for the psychedelic experience — write your intentions before you go. What are you carrying? What do you want to look at? What do you want to feel? Don't come in blank. The more honest you are on paper before, the more the experience will give you.</p>
+        <div class="bya-c-sug">Do this in the week before the trip. Return to it after.</div>
       </div>
       <div class="bya-card">
+        <span class="bya-icon">🔒</span>
         <h4 class="bya-c-t">Close Your Loops</h4>
-        <div class="bya-c-target">Finish what needs finishing. Come in clean.</div>
-        <p class="bya-c-det">Work, conversations, decisions you've been putting off. The guilt of unfinished things follows you into the mountains. June 12 is the cutoff. Everything before that line gets resolved.</p>
-        <div class="bya-c-sug">Start your wind-down 5 days before. Don't leave mid-chaos.</div>
+        <div class="bya-c-target">Whatever's open before June 12 — close it.</div>
+        <p class="bya-c-det">Work commitments, conversations you've been putting off, decisions that have been sitting. Don't carry them into the mountains. Give yourself a real cutoff date — June 10 — and actually close things out. Full disconnection only works if you leave with clean hands.</p>
+        <div class="bya-c-sug">Set June 10 as your internal cutoff. Not June 12.</div>
       </div>
     </div>
     <div class="bya-ref">
-      "What version of yourself do you want to leave in the mountains?<br>What are you carrying right now that this trip could help you put down?"
+      "What do you want to put down on this trip?<br>Write it before you go. The mountains will respond."
+      <div style="font-family: var(--sans); font-size: 11px; color: var(--t3); margin-top: 12px; font-style: normal; text-transform: uppercase; letter-spacing: 0.1em;">Return to this after you're back.</div>
     </div>
   </div>
 
@@ -879,7 +870,7 @@ const DAYS=[
   {n:0,date:'Jun 12',dow:'Friday',
    title:'The Departure',loc:'Hyderabad → Delhi',
    teaser:'It begins. Wheels up, hearts rising.',
-   vibes:['travel'],spoiler:false,
+   vibes:['travel'],spoiler:true,
    detail:'Afternoon flight from Hyderabad lands Delhi by evening. Grab dinner near ISBT Kashmiri Gate, then board the overnight Volvo to Kasol around 9–10pm. Thirteen hours from now, the Parvati Valley.'},
   {n:1,date:'Jun 13',dow:'Saturday',
    title:'First Breath',loc:'Kasol',
@@ -915,7 +906,7 @@ const DAYS=[
   {n:9,date:'Jun 21',dow:'Sunday',
    title:'Return',loc:'Manali → Delhi → Hyderabad',
    teaser:'You leave different. The mountains keep what they take.',
-   vibes:['travel'],spoiler:false,
+   vibes:['travel'],spoiler:true,
    detail:'5am departure by private cab. Long drive south through the foothills. Night flight home. The trip is over. The trip is never over.'},
 ];
 
