@@ -1013,6 +1013,54 @@ function switchTab(idx) {
   });
 }
 
+// ── CHECKLIST PERSISTENCE ──────────────────────────
+const CHECKLIST_STORAGE_KEY = 'himalayanAdventure.checklist.v1';
+
+function readChecklistState() {
+  try {
+    return JSON.parse(localStorage.getItem(CHECKLIST_STORAGE_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function writeChecklistState(state) {
+  try {
+    localStorage.setItem(CHECKLIST_STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Storage may be unavailable in private browsing or restricted contexts.
+  }
+}
+
+function checklistItemId(item) {
+  const tab = item.closest('.bya-tab-content');
+  const tabId = tab ? tab.id : 'prep';
+  const label = item.querySelector('strong') || item.querySelector('.bya-li-text') || item;
+  const slug = label.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return `${tabId}:${slug}`;
+}
+
+function initChecklistPersistence() {
+  const state = readChecklistState();
+  const prep = document.getElementById('prep');
+  const items = document.querySelectorAll('.bya-li');
+
+  items.forEach(item => {
+    const id = checklistItemId(item);
+    item.dataset.checkId = id;
+    item.classList.toggle('checked', state[id] === true);
+  });
+
+  prep.addEventListener('click', event => {
+    const item = event.target.closest('.bya-li');
+    if (!item || !prep.contains(item)) return;
+
+    const nextState = readChecklistState();
+    nextState[item.dataset.checkId || checklistItemId(item)] = item.classList.contains('checked');
+    writeChecklistState(nextState);
+  });
+}
+
 // ── TOGGLE SECTION ─────────────────────────────────
 function togglePrep() {
   const sec = document.getElementById('prep');
@@ -1073,6 +1121,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ── INIT ─────────────────────────────────────────
+initChecklistPersistence();
 render();
 </script>
 </body>
